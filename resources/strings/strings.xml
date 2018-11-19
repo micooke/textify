@@ -1,0 +1,34 @@
+<strings>
+    <string id="AppName">textify</string>
+
+	<string id="BackgroundColourTitle">Background Colour</string>
+    <string id="HourColourTitle">Hour Colour</string>
+    <string id="MinuteColourTitle">Minute Colour</string>
+    <string id="DateColourTitle">Date Colour</string>
+    <string id="MilitaryFormatTitle">Military Format for 24 Hour Time</string>
+    <string id="UpperCaseTitle">Text is Upper Case</string>
+	<string id="FontChoiceTitle">Font Choice</string>
+    <string id="TextifyIndividuallyTitle">Textify each numeral individually</string>
+
+    <string id="White">White</string>
+    <string id="LightGray">Light Gray</string>
+    <string id="DarkGray">Dark Gray</string>
+    <string id="Black">Black</string>
+    <string id="Red">Red</string>
+    <string id="DarkRed">Dark Red</string>
+    <string id="Orange">Orange</string>
+    <string id="Yellow">Yellow</string>
+    <string id="Green">Green</string>
+    <string id="DarkGreen">Dark Green</string>
+    <string id="Blue">Blue</string>
+    <string id="DarkBlue">Dark Blue</string>
+    <string id="Purple">Purple</string>
+    <string id="Pink">Pink</string>
+    <string id="LightYellow">Light Yellow</string>
+    
+    <string id="Digitalt">Digitalt (All Caps)</string>
+    <string id="Munistic">Munistic (All Caps)</string>
+    <string id="Gputeks">Gputeks</string>
+    <string id="Resagokr">Resagokr</string>
+    <string id="okolaks">okolaks</string>
+</strings>

@@ -1,0 +1,12 @@
+<fonts>
+	<font id="Digitalt" filename="Digitalt.fnt" antialias="true" filter="'ABCDEFGHIJKLMMNOPQRSTUVWXYZ "/>
+	<font id="DigitaltSmall" filename="DigitaltSmall.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ 0123456789%"/>
+	<font id="Munistic" filename="Munistic.fnt" antialias="true" filter="'ABCDEFGHIJKLMMNOPQRSTUVWXYZ "/>
+	<font id="MunisticSmall" filename="MunisticSmall.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ 0123456789%"/>
+	<font id="Gputeks" filename="GputeksBold.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ "/>
+	<font id="GputeksSmall" filename="GputeksBoldSmall.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ 0123456789%"/>
+	<font id="Resagokr" filename="ResagokrBold.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ "/>
+	<font id="ResagokrSmall" filename="ResagokrBoldSmall.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ 0123456789%"/>
+	<font id="okolaks" filename="okolaksBold.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ "/>
+	<font id="okolaksSmall" filename="okolaksBoldSmall.fnt" antialias="true" filter="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMMNOPQRSTUVWXYZ 0123456789%"/>
+</fonts>

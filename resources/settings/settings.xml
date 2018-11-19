@@ -1,0 +1,105 @@
+<settings>
+
+    <setting propertyKey="@Properties.BackgroundColour" title="@Strings.BackgroundColourTitle">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">@Strings.White</listEntry>
+            <listEntry value="0xAAAAAA">@Strings.LightGray</listEntry>
+            <listEntry value="0x555555">@Strings.DarkGray</listEntry>
+            <listEntry value="0x000000">@Strings.Black</listEntry>
+            <listEntry value="0xFF0000">@Strings.Red</listEntry>
+            <listEntry value="0xAA0000">@Strings.DarkRed</listEntry>
+            <listEntry value="0xFF5500">@Strings.Orange</listEntry>
+            <listEntry value="0xFFAA00">@Strings.Yellow</listEntry>
+            <listEntry value="0x00FF00">@Strings.Green</listEntry>
+            <listEntry value="0x00AA00">@Strings.DarkGreen</listEntry>
+            <listEntry value="0x00AAFF">@Strings.Blue</listEntry>
+            <listEntry value="0x0000FF">@Strings.DarkBlue</listEntry>
+            <listEntry value="0xAA00FF">@Strings.Purple</listEntry>
+            <listEntry value="0xFF00FF">@Strings.Pink</listEntry>
+            <listEntry value="0xFFFF00">@Strings.LightYellow</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.HourColour" title="@Strings.HourColourTitle">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">@Strings.White</listEntry>
+            <listEntry value="0xAAAAAA">@Strings.LightGray</listEntry>
+            <listEntry value="0x555555">@Strings.DarkGray</listEntry>
+            <listEntry value="0x000000">@Strings.Black</listEntry>
+            <listEntry value="0xFF0000">@Strings.Red</listEntry>
+            <listEntry value="0xAA0000">@Strings.DarkRed</listEntry>
+            <listEntry value="0xFF5500">@Strings.Orange</listEntry>
+            <listEntry value="0xFFAA00">@Strings.Yellow</listEntry>
+            <listEntry value="0x00FF00">@Strings.Green</listEntry>
+            <listEntry value="0x00AA00">@Strings.DarkGreen</listEntry>
+            <listEntry value="0x00AAFF">@Strings.Blue</listEntry>
+            <listEntry value="0x0000FF">@Strings.DarkBlue</listEntry>
+            <listEntry value="0xAA00FF">@Strings.Purple</listEntry>
+            <listEntry value="0xFF00FF">@Strings.Pink</listEntry>
+            <listEntry value="0xFFFF00">@Strings.LightYellow</listEntry>
+        </settingConfig>
+    </setting>
+    
+    <setting propertyKey="@Properties.MinuteColour" title="@Strings.MinuteColourTitle">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">@Strings.White</listEntry>
+            <listEntry value="0xAAAAAA">@Strings.LightGray</listEntry>
+            <listEntry value="0x555555">@Strings.DarkGray</listEntry>
+            <listEntry value="0x000000">@Strings.Black</listEntry>
+            <listEntry value="0xFF0000">@Strings.Red</listEntry>
+            <listEntry value="0xAA0000">@Strings.DarkRed</listEntry>
+            <listEntry value="0xFF5500">@Strings.Orange</listEntry>
+            <listEntry value="0xFFAA00">@Strings.Yellow</listEntry>
+            <listEntry value="0x00FF00">@Strings.Green</listEntry>
+            <listEntry value="0x00AA00">@Strings.DarkGreen</listEntry>
+            <listEntry value="0x00AAFF">@Strings.Blue</listEntry>
+            <listEntry value="0x0000FF">@Strings.DarkBlue</listEntry>
+            <listEntry value="0xAA00FF">@Strings.Purple</listEntry>
+            <listEntry value="0xFF00FF">@Strings.Pink</listEntry>
+            <listEntry value="0xFFFF00">@Strings.LightYellow</listEntry>
+        </settingConfig>
+    </setting>    
+
+    <setting propertyKey="@Properties.DateColour" title="@Strings.DateColourTitle">
+        <settingConfig type="list">
+            <listEntry value="0xFFFFFF">@Strings.White</listEntry>
+            <listEntry value="0xAAAAAA">@Strings.LightGray</listEntry>
+            <listEntry value="0x555555">@Strings.DarkGray</listEntry>
+            <listEntry value="0x000000">@Strings.Black</listEntry>
+            <listEntry value="0xFF0000">@Strings.Red</listEntry>
+            <listEntry value="0xAA0000">@Strings.DarkRed</listEntry>
+            <listEntry value="0xFF5500">@Strings.Orange</listEntry>
+            <listEntry value="0xFFAA00">@Strings.Yellow</listEntry>
+            <listEntry value="0x00FF00">@Strings.Green</listEntry>
+            <listEntry value="0x00AA00">@Strings.DarkGreen</listEntry>
+            <listEntry value="0x00AAFF">@Strings.Blue</listEntry>
+            <listEntry value="0x0000FF">@Strings.DarkBlue</listEntry>
+            <listEntry value="0xAA00FF">@Strings.Purple</listEntry>
+            <listEntry value="0xFF00FF">@Strings.Pink</listEntry>
+            <listEntry value="0xFFFF00">@Strings.LightYellow</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.UseMilitaryFormat" title="@Strings.MilitaryFormatTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.TextifyIndividually" title="@Strings.TextifyIndividuallyTitle">
+        <settingConfig type="boolean" />
+    </setting>
+    
+    <setting propertyKey="@Properties.UseUpperCase" title="@Strings.UpperCaseTitle">
+        <settingConfig type="boolean" />
+    </setting>
+    
+    <setting propertyKey="@Properties.FontChoice" title="@Strings.FontChoiceTitle">
+        <settingConfig type="list">
+            <listEntry value="0x000000">@Strings.Digitalt</listEntry>
+            <listEntry value="0x000001">@Strings.Munistic</listEntry>
+            <listEntry value="0x000002">@Strings.Gputeks</listEntry>
+            <listEntry value="0x000003">@Strings.Resagokr</listEntry>
+            <listEntry value="0x000004">@Strings.okolaks</listEntry>
+        </settingConfig>
+    </setting>
+
+</settings>
