@@ -13,10 +13,13 @@ class textifyView extends Ui.WatchFace {
     hidden const tenString = ["oh", "ten", "twenty", "thirty", "forty", "fifty", "sixty"];
 	hidden var _DEBUG = false, _DEBUG_VAR = 0, fourtwenty = false;
 	hidden var penWidth = 4;
-    hidden var timeFont, timeFontHeight, timeVerticalScale, timeVerticalCentre, dateFont, dateFontHeight;
+	hidden var dateFontHeight = 0;
+    hidden var timeFont, timeFontHeight, timeVerticalScale, timeVerticalCentre, dateFont;
     
     // settings
     hidden var is24Hour;
+    hidden var isRoundface = true;
+    hidden var showSteps, showDate, showBattery;
     hidden var isMilitaryTime, TextifyIndividually, hourColour, minuteColour, dateColour, backgroundColour, UseUpperCase, FontChoice;
     
     // physical settings
@@ -24,7 +27,6 @@ class textifyView extends Ui.WatchFace {
     function initialize() {
         WatchFace.initialize();
         if (_DEBUG) { System.println("#initialise#"); }
-    	//updateSettings();
     }
 
     // Load your resources here
@@ -36,6 +38,10 @@ class textifyView extends Ui.WatchFace {
     	halfScreenWidth = screenWidth/2;
     	screenHeight = dc.getHeight();
     	halfScreenHeight = screenHeight/2;
+    	
+    	isRoundface = (screenWidth == screenHeight);
+    	
+    	if (_DEBUG) { System.print("H x W = "); System.print(screenWidth); System.print(" x "); System.println(screenHeight); }
     }
 
     function updateSettings()
@@ -43,6 +49,9 @@ class textifyView extends Ui.WatchFace {
     	if (_DEBUG) { System.println("[updateSettings]"); }
         var deviceSettings = Sys.getDeviceSettings();
         is24Hour = deviceSettings.is24Hour;
+        showSteps = Application.getApp().getProperty("ShowSteps");
+        showBattery = Application.getApp().getProperty("ShowBattery");
+        showDate = Application.getApp().getProperty("ShowDate");
         isMilitaryTime = Application.getApp().getProperty("UseMilitaryFormat");
         TextifyIndividually = Application.getApp().getProperty("TextifyIndividually");
         hourColour = Application.getApp().getProperty("HourColour");
@@ -62,13 +71,7 @@ class textifyView extends Ui.WatchFace {
     function onUpdate(dc) {
     	if (_DEBUG) { System.println("#onUpdate#"); }
     	updateFontChoice(dc);
-    	//updateSettings();
-        // watch statistics
-        var batteryLevel = Sys.getSystemStats().battery;
-        if (_DEBUG) { batteryLevel = 15; is24Hour = true; } // DEBUG
-        var batteryLevelString = (batteryLevel <= 15)?"recharge":batteryLevel.format("%d").toString() + "%"; 
-        batteryLevelString = (UseUpperCase)?batteryLevelString.toUpper():batteryLevelString;
-        
+
         // Get the current time
         var clockTime = Sys.getClockTime();
         if (_DEBUG) // DEBUG
@@ -113,35 +116,62 @@ class textifyView extends Ui.WatchFace {
             clockTimeStringArray[3] = (clockTimeStringArray[3] == null)?null:clockTimeStringArray[3].toUpper();
         }
         
-        // Get the current date
-        var clockDate = Calendar.info(Time.now(), Time.FORMAT_MEDIUM);
-        //clockDate.day_of_week = "Sun"; clockDate.day = 2; clockDate.month = "Sep"; // DEBUG
-
-        var dateString = toDateString(clockDate.day_of_week, clockDate.day, clockDate.month, UseUpperCase);
-        
+                
         // setup the watch face
+        var dateYPos = 0;
+        var batteryYPos = dc.getHeight() - dateFontHeight;
+        // if roundface then additional Y offsets are required
+        if (isRoundface)
+        {
+			dateYPos += dateFontHeight;
+        	batteryYPos -= 0.7*dateFontHeight;        	
+        }
+        // clear the background
         dc.setColor(backgroundColour, backgroundColour);
         dc.clear();
         
         // draw the date
-        var dateFontHeight = dc.getFontHeight(dateFont);
-
-        dc.setColor(dateColour, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(halfScreenWidth, dateFontHeight, dateFont, dateString, Gfx.TEXT_JUSTIFY_CENTER);
+        if (showDate)
+        {
+	        // Get the current date
+	        var clockDate = Calendar.info(Time.now(), Time.FORMAT_MEDIUM);
+	        //clockDate.day_of_week = "Sun"; clockDate.day = 2; clockDate.month = "Sep"; // DEBUG
+	
+	        var dateString = toDateString(clockDate.day_of_week, clockDate.day, clockDate.month, UseUpperCase);
+        
+        	dc.setColor(dateColour, Gfx.COLOR_TRANSPARENT);
+        	
+        	dc.drawText(halfScreenWidth, dateYPos, dateFont, dateString, Gfx.TEXT_JUSTIFY_CENTER);
+    	}
         
         // draw the battery percent
-        dc.drawText(halfScreenWidth, dc.getHeight() - 1.7*dateFontHeight, dateFont, batteryLevelString, Gfx.TEXT_JUSTIFY_CENTER);
+        if (showBattery)
+        {
+        	dc.setColor(dateColour, Gfx.COLOR_TRANSPARENT);
+        	
+	        var batteryLevel = Sys.getSystemStats().battery;
+	        if (_DEBUG) { batteryLevel = 15; is24Hour = true; } // DEBUG
+	        var batteryLevelString = (batteryLevel <= 15)?"recharge":batteryLevel.format("%d").toString() + "%"; 
+	        batteryLevelString = (UseUpperCase)?batteryLevelString.toUpper():batteryLevelString;
+        
+        	dc.drawText(halfScreenWidth, batteryYPos, dateFont, batteryLevelString, Gfx.TEXT_JUSTIFY_CENTER);
+    	}
         
         // get the current step count
-        var ActInfo = ActMon.getInfo();
-        var stepCount = ActInfo.steps;
-        var stepGoal = ActInfo.stepGoal;
-        var stepPercent = (stepCount == 0.0)?0.0:(stepCount.toFloat() / stepGoal);
-        if (_DEBUG) { stepPercent = 2.25; } // DEBUG
+        if (showSteps)
+        {
+        	dc.setColor(dateColour, Gfx.COLOR_TRANSPARENT);
+        	
+	        var ActInfo = ActMon.getInfo();
+	        var stepCount = ActInfo.steps;
+	        var stepGoal = ActInfo.stepGoal;
+	        var stepPercent = (stepCount == 0.0)?0.0:(stepCount.toFloat() / stepGoal);
+	        if (_DEBUG) { stepPercent = 2.25; } // DEBUG
+	        
+	        // draw the step count
+	        drawStepCount(dc, stepPercent, penWidth, hourColour, minuteColour);
+        } 
         
-        // draw the step count
-        drawStepCount(dc, stepPercent, penWidth, hourColour, minuteColour);
-         
         // draw the time
         drawTimeString(dc, clockTimeStringArray, timeFont, hourColour, minuteColour);
         
@@ -300,32 +330,37 @@ class textifyView extends Ui.WatchFace {
 	                timeFont = Ui.loadResource(Rez.Fonts.Digitalt);
 	                dateFont = Ui.loadResource(Rez.Fonts.DigitaltSmall);
 	                timeVerticalScale = 0.9;
+	                dateFontHeight = 20;//46;
 	                break;
 	            case 1:
 	                timeFont = Ui.loadResource(Rez.Fonts.Munistic);
 	                dateFont = Ui.loadResource(Rez.Fonts.MunisticSmall);
 	                timeVerticalScale = 0.9;
+	                dateFontHeight = 20;//44;
 	                break;
 	            case 2:
 	                timeFont = Ui.loadResource(Rez.Fonts.Gputeks);
 	                dateFont = Ui.loadResource(Rez.Fonts.GputeksSmall);
 	                timeVerticalScale = 0.75;
+	                dateFontHeight = 25;//53;
 	                break;
-	            case 4:
-	                timeFont = Ui.loadResource(Rez.Fonts.okolaks);
-	                dateFont = Ui.loadResource(Rez.Fonts.okolaksSmall);
-	                timeVerticalScale = 0.75;
-	                break;
-	            default: // case 3
+	            case 3:
 	                timeFont = Ui.loadResource(Rez.Fonts.Resagokr);
 	                dateFont = Ui.loadResource(Rez.Fonts.ResagokrSmall);
 	                timeVerticalScale = 1.0;
+	                dateFontHeight = 20;//42;
+	                break;
+	            default:
+	                timeFont = Ui.loadResource(Rez.Fonts.okolaks);
+	                dateFont = Ui.loadResource(Rez.Fonts.okolaksSmall);
+	                timeVerticalScale = 0.75;
+	                dateFontHeight = 25;//49;
+	                break;
 	        }
         }
         
         timeFontHeight = timeVerticalScale*dc.getFontHeight(timeFont);
         timeVerticalCentre = halfScreenHeight - 0.5*timeFontHeight;
-        dateFontHeight = dc.getFontHeight(timeFont);
     }
     
     function toDateString(dotw, day, month, UseUpperCase) {

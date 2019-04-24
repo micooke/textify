@@ -1,6 +1,10 @@
 <strings>
     <string id="AppName">textify</string>
 
+	<string id="ShowStepsTitle">Show Step Counter</string>
+	<string id="ShowBatteryTitle">Show Battery Percentage</string>
+	<string id="ShowDateTitle">Show Date</string>
+	
 	<string id="BackgroundColourTitle">Background Colour</string>
     <string id="HourColourTitle">Hour Colour</string>
     <string id="MinuteColourTitle">Minute Colour</string>
